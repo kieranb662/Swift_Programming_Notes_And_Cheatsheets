@@ -6,8 +6,8 @@
 * Shell
 
 
-# Swift MarkUp CheatSheet
-The cheat sheet I use for when I forget how to make comments look a certain way in Swift. 
+# Swift MarkUp 
+
 Not everything is here, I never really found a use for all of it so I just kept the stuff I used frequently.
 
 ## Basic Syntax
