@@ -6,7 +6,9 @@ The cheat sheet I use for when I forget how to make comments look a certain way 
 | Style                 | Syntax                    |
 |-----------------------|---------------------------|
 | Single Row Comment    | `/// Example `              |
-| Block Comment         | `/** <br>Example<br>*/ `    |
+| Block Comment         | `/** 
+Example
+*/ `    |
 | Header(H1)            | `# example`            |
 | Header(H2)            | `## example`                |
 | Italicized            | `*example*`                 |
@@ -14,7 +16,9 @@ The cheat sheet I use for when I forget how to make comments look a certain way 
 | Unordered List        | `* example`                 |
 | Ordered List          | `1. example`                |
 | Inline Code           | ``var example``             |
-| Multi-Line Code Block | ````<br>var example<br>```` |
+| Multi-Line Code Block | ````
+var example<br>
+```` |
 
 ## Some Delimeters
 Attention
@@ -45,11 +49,16 @@ Images
 ## Generic Example
 
 ``` Swift
-  /**
-      # Important Function
-Example description of a function - parameters:
-- first: Description of *first*
-- second: Description of *second*
-- returns: *third* number */
+/**
+# Important Function
+
+Example description of a function 
+- parameters:
+  - first: Description of *first*
+  - second: Description of *second*
+  
+- returns: *third* number 
+
+*/
 ```
 
