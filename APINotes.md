@@ -316,6 +316,151 @@ class <# Name #>: NSObject {
     }
 }
 ```
+
+## XML Parsing Template
+
+```Swift
+// MARK: XMLParserDelegate
+
+extension <# Name #>: XMLParserDelegate {
+
+ // Helpful Hint
+ // Use a variable to keep track of the recursion depth of elements, add 1 when the parser starts an element and subtract 1 when it exits.
+ 
+    
+    // MARK: Start Handler
+    
+    /// Sent by the parser object to the delegate when it begins parsing a document.
+    func parserDidStartDocument(_ parser: XMLParser) {
+        <#code#>
+    }
+    
+    // MARK: Finished Handler
+    
+    /// Sent by the parser object to the delegate when it has successfully completed parsing.
+    func parserDidEndDocument(_ parser: XMLParser) {
+        <#code#>
+    }
+    
+    
+    // MARK: Tag Handling
+    
+    /// Sent by a parser object to its delegate when it encounters a start tag for a given element.
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        <#code#>
+    }
+    /// Sent by a parser object to provide its delegate with a string representing all or part of the characters of the current element.
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        <#code#>
+    }
+    
+    /// Reported by a parser object to provide its delegate with a string representing all or part of the ignorable whitespace characters of the current element.
+    func parser(_ parser: XMLParser, foundIgnorableWhitespace whitespaceString: String) {
+        <#code#>
+    }
+    
+    /// Sent by a parser object to its delegate when it encounters an end tag for a specific element.
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        <#code#>
+    }
+    
+    
+    // MARK: URI
+    
+    ///Sent by a parser object to its delegate the first time it encounters a given namespace prefix, which is mapped to a URI.
+    func parser(_ parser: XMLParser, didStartMappingPrefix prefix: String, toURI namespaceURI: String) {
+        <#code#>
+    }
+    
+    /// Sent by a parser object to its delegate when a given namespace prefix goes out of scope.
+    func parser(_ parser: XMLParser, didEndMappingPrefix prefix: String) {
+        <#code#>
+    }
+    
+    // MARK: Error Handling
+    
+    /// Sent by a parser object to its delegate when it encounters a fatal error.
+    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
+        <#code#>
+    }
+    
+    /// Sent by a parser object to its delegate when it encounters a fatal validation error. NSXMLParser currently does not invoke this method and does not perform validation.
+    func parser(_ parser: XMLParser, validationErrorOccurred validationError: Error) {
+        <#code#>
+    }
+    
+    
+    // MARK: Misc
+    
+    /// Sent by a parser object to its delegate when it encounters a comment in the XML.
+    func parser(_ parser: XMLParser, foundComment comment: String) {
+        <#code#>
+    }
+    
+    
+
+    /// Sent by a parser object to its delegate when it encounters a CDATA block.
+    /// - note: CDATA refers to unparsed character data, usually used to prevent conflicts with `<` and `&` which are used to represent start elements and entities.
+    func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
+        <#code#>
+    }
+    
+    
+   
+    /// Sent by a parser object to its delegate when it encounters a processing instruction.
+    ///- note: Syntax is `<?PITarget PIContent?>`
+    func parser(_ parser: XMLParser, foundProcessingInstructionWithTarget target: String, data: String?) {
+        <#code#>
+    }
+    
+    
+    
+    // MARK: DTD (document type definition)
+    
+    
+    /// Sent by a parser object to its delegate when it encounters a given external entity with a specific system ID.
+    /// - requires: An externally declared DTD, or some other form of resolution.
+    func parser(_ parser: XMLParser, resolveExternalEntityName name: String, systemID: String?) -> Data? {
+        <#code#>
+    }
+    
+    /// Sent by a parser object to its delegate when it encounters a declaration of an element with a given model.
+    /// - note: Element declarations have the form `<!ELEMENT name (child_name1, child_name2, ...)>` for children elements or `<!ELEMENT name (#PCDATA)>` for single.
+    func parser(_ parser: XMLParser, foundElementDeclarationWithName elementName: String, model: String) {
+        <#code#>
+    }
+    
+
+    /// Sent by a parser object to the delegate when it encounters an internal entity declaration.
+    /// - note: Internal Entity syntax is of the form `<!ENTITY entity-name "entity-value">`
+    func parser(_ parser: XMLParser, foundInternalEntityDeclarationWithName name: String, value: String?) {
+        <#code#>
+    }
+    
+    
+    /// Sent by a parser object to its delegate when it encounters an external entity declaration.
+    /// - note: External Entity syntax is of the form `<!ENTITY entity-name SYSTEM "URI/URL">`
+    func parser(_ parser: XMLParser, foundExternalEntityDeclarationWithName name: String, publicID: String?, systemID: String?) {
+        <#code#>
+    }
+    
+    
+    /// Sent by a parser object to its delegate when it encounters an unparsed entity declaration.
+    func parser(_ parser: XMLParser, foundUnparsedEntityDeclarationWithName name: String, publicID: String?, systemID: String?, notationName: String?) {
+        <#code#>
+    }
+    
+    
+    /// Sent by a parser object to its delegate when it encounters a declaration of an attribute that is associated with a specific element.
+    /// - note: Syntax `<!ATTLIST element-name attribute-name attribute-type attribute-value>`
+    func parser(_ parser: XMLParser, foundAttributeDeclarationWithName attributeName: String, forElement elementName: String, type: String?, defaultValue: String?) {
+        <#code#>
+    }
+    
+}
+```
+
+
 ## Comparison Summary
 
 <table>
