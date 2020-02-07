@@ -6,9 +6,7 @@ The cheat sheet I use for when I forget how to make comments look a certain way 
 | Style                 | Syntax                    |
 |-----------------------|---------------------------|
 | Single Row Comment    | `/// Example `              |
-| Block Comment         | `/** 
-Example
-*/ `    |
+| Block Comment         | /** <br>Example <br> */    |
 | Header(H1)            | `# example`            |
 | Header(H2)            | `## example`                |
 | Italicized            | `*example*`                 |
@@ -16,9 +14,7 @@ Example
 | Unordered List        | `* example`                 |
 | Ordered List          | `1. example`                |
 | Inline Code           | ``var example``             |
-| Multi-Line Code Block | ````
-var example<br>
-```` |
+| Multi-Line Code Block | \``` \<br> var example \<br> \``` |
 
 ## Some Delimeters
 Attention
