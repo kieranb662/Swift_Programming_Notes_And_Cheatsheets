@@ -1,9 +1,37 @@
 # CheatSheets and Notes
 
-* Swift Markup
-* YAML 
-* Moustache 
-* Shell
+- [CheatSheets and Notes](#cheatsheets-and-notes)
+- [Swift MarkUp](#swift-markup)
+  * [Basic Syntax](#basic-syntax)
+  * [Some Delimeters](#some-delimeters)
+  * [Generic Example](#generic-example)
+- [YAML](#yaml)
+  * [Indentation](#indentation)
+  * [Numeric Values](#numeric-values)
+  * [Strings](#strings)
+  * [Nulls](#nulls)
+  * [Booleans](#booleans)
+  * [Arrays](#arrays)
+  * [Dictionaries](#dictionaries)
+  * [Anchors](#anchors)
+  * [References](#references)
+- [.moustache](#moustache)
+  * [Variables](#variables)
+  * [Sections](#sections)
+  * [Inverted Sections](#inverted-sections)
+  * [Comments](#comments)
+  * [Partials](#partials)
+  * [References](#references-1)
+- [Shell](#shell)
+  * [Startup Sequence Of Events](#startup-sequence-of-events)
+  * [Shell Command Execution](#shell-command-execution)
+  * [Shell Command Interpretation](#shell-command-interpretation)
+    + [Anatomy of Commands](#anatomy-of-commands)
+    + [Fundamental Terminal Commands](#fundamental-terminal-commands)
+  * [Structure of Files and Folders Linux and Mac](#structure-of-files-and-folders-linux-and-mac)
+  * [Summary](#summary)
+  * [Recording iOS Simulator](#recording-ios-simulator)
+
 
 
 # Swift MarkUp 
@@ -59,11 +87,11 @@ Example description of a function
 
 YAML is a simple serialization language that is used by many as a format for configurations files.  YAML uses key-value pairs like JSON.    Comments are written by Prepending a `#` to the comment. 
 
-**Indentation** 
+## Indentation
 
 All indentation must be in the form of spaces (**Not** tabs).
 
-**Numeric Values** 
+## Numeric Values 
 
 Values that can be recognised come in the form of 
 * Integers (decimal, hexidecimal , or octal)
@@ -73,7 +101,7 @@ Values that can be recognised come in the form of
 * Not a Number (.NAN)
 
 
-**Strings** 
+## Strings
 
 Strings do not need to be wrapped in double quotes unless you wish to have escaped sequences handled. 
 
@@ -94,11 +122,11 @@ one line
 see?
 ````
 
-**Nulls**
+## Nulls
 
 Use either `~` or the unquoted word `null`
 
-**Booleans**
+## Booleans
 
 True can be written in the following ways: 
 * True 
@@ -110,7 +138,7 @@ False can be written in the following ways
 * Off
 * No
 
-**Arrays** 
+## Arrays
 
 Arrays in YAML can be represented in either brackets `[...]` or in the multiline format 
 ````
@@ -127,7 +155,7 @@ names:
   - "four"
   ````
   
-**Dictionaries** 
+## Dictionaries
   
 Similar to arrays, dictionaries can come in a single line format `{...}` or in the multiline form.
   ````
@@ -139,7 +167,7 @@ Similar to arrays, dictionaries can come in a single line format `{...}` or in t
     
 ````
 
-**Anchors**
+## Anchors
 
 If values are to be referenced or used multiple times, anchors can be used to reduce copy/pasting long entries multiple times.  Here is an example from the spec website link. 
 ```
@@ -152,7 +180,7 @@ rbi:
   - Ken Griffey
 ```
 
-**References** 
+## References
 * YAML Spec - https://yaml.org/spec/1.2/spec.html
 * Info on the `<<` - https://stackoverflow.com/questions/41063361/what-is-the-double-left-arrow-syntax-in-yaml-called-and-wheres-it-specced
 
@@ -161,13 +189,13 @@ rbi:
 
 The mustache file format is used to create "Logic-less templates" for various file types. There are no if statements, else statements, or for loops. The only component found within them is the **tags** . 
 
-**Variables** 
+## Variables
 
 `{{variable}}` is a tag whose key(variable) will be searched for in the current context. 
 
 for unescaped HTML use `{{{variable}}}` or  `{{& variable}}`
 
-**Sections** 
+## Sections 
 
 A section begins with a `{{#variable}}` and ends with a `{{/variable}}`.  Behavior of the section is determined by the value of the key. 
 
@@ -176,20 +204,20 @@ A section begins with a `{{#variable}}` and ends with a `{{/variable}}`.  Behavi
 * lambdas - if the section value is a callable function, should handle its own creation of the block. 
 * Non-False values - renders the block with the value once 
 
-**Inverted Sections**
+## Inverted Sections
 
 A section begins with a `{{^variable}}` and ends with a `{{/variable}}`.  Behavior of the section is determined by the value of the key. In this case text will be rendered if the value of the key doesnt exist, is false or is an empty list. 
 
-**Comments** 
+## Comments 
 
 Written in the form `{{! variable}}`.  These values will never be rendered. 
 
-**Partials** 
+## Partials 
 
 Written in the form `{{> variable}}`. Used for referencing other mustache files to be nested within the current file.
 
 
-**References** 
+## References
 
 * Mustache Manual - https://mustache.github.io/mustache.5.html
 
@@ -258,7 +286,7 @@ Command (-option) (something)
 `echo -n "String"` - prints String in the next line before the username.
 
 
-## Structure of Files and Folders Linux/Mac
+## Structure of Files and Folders Linux and Mac
 
   1. Every file or directory belongs to some user.
   2. Users are grouped into groups.
