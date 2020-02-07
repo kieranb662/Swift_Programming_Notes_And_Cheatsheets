@@ -302,3 +302,33 @@ Parameters greater than 9 must be enclosed in brackets `${10}`
 * HISTSIZE - If set, specifies the number of previously entered commands accessible for editing. default is 128
 * HOME - The users home directory, the directory that cd changes to when no argument is supplied.
 
+
+## Recording iOS Simulator 
+
+```Shell
+# 1. Boot up the iPhones to be tested
+
+# This pulls from the list of simulators the one that matches "iPhone Xʀ" and then outputs the udid using a regex
+udid=`xcrun simctl list | grep "iPhone Xʀ" | grep -E -o -i "([0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12})"`
+# boot the device using the UDID
+xcrun simctl boot $udid
+
+#  2. Run the tests and record the video
+# Note - must be in directory of the .xcodeproj file
+
+# Run the test to be recorded.
+xcodebuild test -project gitlab-ui-test.xcodeproj -scheme ui -destination 'platform=iOS Simulator,name=iPhone Xʀ,OS=12.4' &
+# Start the video recording of the device
+xcrun simctl io booted recordVideo Xr-Gitlab-UI-Test.mp4
+# Shutdown the currently running simulator(s)
+xcrun simctl shutdown booted
+
+
+# Multiple at once
+xcrun simctl list devices | grep "iPhone" | while read line ; do echo $line ; done
+
+
+# correct regular expression for pulling iPhone names.
+xcrun simctl list devices | grep "iPhone" | egrep -o "^[^(]+"
+```
+
