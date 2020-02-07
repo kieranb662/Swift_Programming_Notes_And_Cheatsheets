@@ -243,6 +243,28 @@ Shell uses whitespace characters to determine where the program name starts and 
 
 *Note* - Multiple whitespace characters are ignored by the shell.
 
+### Anatomy of Commands
+
+Command (-option) (something)
+
+### Fundamental Terminal Commands
+
+`whoami` - Tells you who you are logged in as.
+`pwd` - Tells you the present working directory.
+`ls` - Lists all files/folders in the present directory
+`ls -a` - Lists all files/folders including hidden files.
+`echo` - prints a string.
+`killall` - kills the process specified.
+`echo -n "String"` - prints String in the next line before the username.
+
+
+## Structure of Files and Folders Linux/Mac
+
+  1. Every file or directory belongs to some user.
+  2. Users are grouped into groups.
+  3. groups can be assigned to a file.
+  4. Files can be Readable, Writable or Executable.
+
 ## Summary
 
 **Commands**
