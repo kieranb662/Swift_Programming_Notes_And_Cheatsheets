@@ -1,13 +1,13 @@
 # APIs 
 
-<h2> Different Files to be received </h2>
+## Different Files to be received 
 
 1. JSON
 2. XML
 3. Images
 4. Video
 
-<h2> Types of APIs </h2>
+## Types of APIs 
 
 1. **SOAP**(Simple Object Access Protocol):
 Uses proprietary XML format to transfer data. main function is to define structure
@@ -211,7 +211,7 @@ X-Tableau-Auth: 12ab34cd56ef78ab90cd12ef34ab56cd
           <td> Stateless existence and use of <b>HTTP</b> status codes</td>
         </tr>
 
-# URLSession Template
+## URLSession Template
 
 ```Swift 
 class <# Name #>: NSObject {
