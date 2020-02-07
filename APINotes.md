@@ -1,10 +1,4 @@
-<h1> Ways of downloading from URLs with Swift </h1>
-
-1. Using `Data(contentsOf: )` method
-
-2. Using `URLSession` with completion handler.
-
-3. `URLSession` with delegate method.
+# APIs 
 
 <h2> Different Files to be received </h2>
 
@@ -216,3 +210,160 @@ X-Tableau-Auth: 12ab34cd56ef78ab90cd12ef34ab56cd
           sends messages using other protocols such as <b>HTTP</b> , <b>SMTP</b>(Simple Mail Transfer Protocol) <b>TCP</b>, or <b>UDP</b></td>
           <td> Stateless existence and use of <b>HTTP</b> status codes</td>
         </tr>
+
+# URLSession Template
+
+```Swift 
+class <# Name #>: NSObject {
+    
+    /// Handles the setup, requesting and handling of responses.
+    func requestData() {
+        
+        // Insert initial URL String here.
+        let urlString = <# String #>
+        let url = URL(string: urlString)
+        
+        /// Create the request
+        var request = URLRequest(url: url!)
+        
+        /// REQUIRED
+        request.httpMethod = <# Method #>
+        
+        // Usually the created from a string that uses `String.Encoding.utf8`.
+        // If adding a body make sure to include the HeaderField "Content-Length" with the length of the message as the value,
+        // and the corresponding "Content-Type"
+        request.httpBody = <# Data #>
+        
+        // Add values as needed.
+        request.addValue(<# Value #>, forHTTPHeaderField: <# Field #>)
+        
+        
+        /// The session data task that requests and handles initial data, response, and error procedures.
+        let task = URLSession(configuration: .default).dataTask(with: request) { data, response, error in
+            
+            // Create views or actions here for handling errors
+            
+            
+            if let error = error {
+                // call a method for handling client errors.
+                // If updating the UI then remember to call `DispatchQueue.main.async
+                return
+            }
+            
+            
+            // Check the respones for important Error Codes here
+            guard let httpResponse = response as? HTTPURLResponse else {
+                    // Call a method for handling the server error
+                    return
+            }
+            
+            
+            // It is also a good idea to check if the MIME Type is the expected type.
+            if let mimeType = httpResponse.mimeType, mimeType == <# MIME Type #>, data = data {
+               
+                // Do something with the data.
+                
+                
+                // IMPORTANT - the completion handler is called on a Different Grand Central Dispatch Queue than the task creator.
+                // Call methods for updating the UI here.
+                DispatchQueue.main.async {
+                    <#code#>
+                }
+            }
+        }
+        // Tasks are created in the suspended state.
+        task.resume()
+    }
+}
+```
+
+## Background Download
+
+```Swift
+/// - Important
+///
+///1. If your app is in the background, the system may suspend your app while the download is performed in another process.
+///   In this case, when the download finishes, the system resumes the app and calls
+///   application(_:handleEventsForBackgroundURLSession:completionHandler:)
+///
+///
+///2. Store the completionHandler in an accessible location
+///
+///
+///3. Use this format to handle the URLSessionDelegate call
+///
+///
+///   ```
+///        func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+///           // May be called on a secondary queue, return back to main queue
+///            DispatchQueue.main.async {
+///               // In this case the completionHandler was stored within the UIApplication
+///                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+///                    let backgroundCompletionHandler =
+///                    appDelegate.backgroundCompletionHandler else {
+///                       return
+///                }
+///                backgroundCompletionHandler()
+///           }
+///        } ```
+///
+///4. urlSession(_:downloadTask:didFinishDownloadingTo:) is called,
+///   file is available until this method returns. Perform reading and saving here
+///
+///
+///
+/// - Note
+///   * Session must provide a delegate for event delivery.
+///   * Only HTTP and HTTPS protocols are supported.
+///   * Redirects are always followed,
+///       urlSession(_:task:willPerformHTTPRedirection:newRequest:completionHandler:)
+///       will **NOT** be called.
+///   * If app is terminated while suspended, recreate background session within launch time setup.
+///
+///
+class <# Name #>: NSObject {
+    
+    /// Background download session
+    private lazy var <# Session Name #>: URLSession = {
+        // Create a unique configuration identifier.
+        let config = URLSessionConfiguration.background(withIdentifier: <# identifier #>)
+        // true means that app waits for optimal conditions before performing transfer
+        // use false for time-sensitive tasks.
+        config.isDiscretionary = true
+        // allows the system to wake up app when task completes and app is in the background.
+        config.sessionSendsLaunchEvents = true
+        return URLSession(configuration: config, delegate: <# URLSessionDelegate #>, delegateQueue: nil)
+    }()
+    
+
+    /// Creates and starts the background download task
+    func setUpTask() {
+        
+        // Insert initial URL String here.
+        let urlString = <# String #>
+        let url = URL(string: urlString)
+        
+        /// Create the request
+        var request = URLRequest(url: url!)
+        
+        /// REQUIRED
+        request.httpMethod = <# Method #>
+        
+        // Usually the created from a string that uses `String.Encoding.utf8`.
+        // If adding a body make sure to include the HeaderField "Content-Length" with the length of the message as the value,
+        // and the corresponding "Content-Type"
+        request.httpBody = <# Data #>
+        
+        // Add values as needed.
+        request.addValue(<# Value #>, forHTTPHeaderField: <# Field #>)
+        
+        let backgroundTask = <# Session Name #>.downloadTask(with: <# URL or URLRequest #>)
+        backgroundTask.earliestBeginDate = Date().addingTimeInterval(<# Interval(seconds) #>)
+        backgroundTask.countOfBytesClientExpectsToSend =  <# Sent Bytes #>
+        backgroundTask.countOfBytesClientExpectsToReceive = <# Received Bytes #>
+        // Tasks are created in the suspended state.
+        backgroundTask.resume()
+        
+    }
+}
+```
