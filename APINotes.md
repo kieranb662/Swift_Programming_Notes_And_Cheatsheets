@@ -1,11 +1,5 @@
 # APIs 
 
-## Different Files to be received 
-
-1. JSON
-2. XML
-3. Images
-4. Video
 
 ## Types of APIs 
 
