@@ -160,57 +160,6 @@ HOST: my-server
 X-Tableau-Auth: 12ab34cd56ef78ab90cd12ef34ab56cd
 ```
 
-## Comparison Summary
-
-<table>
-        <tr>
-            <th>SOAP</th>
-            <th>REST</th>
-        </tr>
-        <tr>
-          <td> Strict set of rules and advanced security to follow </td>
-          <td> Loose guidelines to follow and allow developers to make recommendations easily.</td>
-        </tr>
-        <tr>
-          <td> Sends messages in <b>XML</b> format.
-          </td>
-          <td>  Can send plain text, <b>HTML</b>, <b>XML</b>, <b>YAML</b>, and <b>JSON</b>. </td>
-        </tr>
-        <tr>
-          <td> Requires an Envelope and Body. Headers and Faults are optional
-          </td>
-          <td> Client-Server separation - each act independently and interact only thru requests and responses</td>
-        </tr>
-        <tr>
-          <td>
-          </td>
-          <td>  Uniform interface- requests from different clients should look the same. Same resources shouldn't have more than on URI </td>
-        </tr>
-        <tr>
-          <td> API calls cannot be cached
-          </td>
-          <td>  Cacheable Resources </td>
-        </tr>
-        <tr>
-          <td>
-          </td>
-          <td>  Layered System </td>
-        </tr>
-        <tr>
-          <td> Driven by function  </td>
-          <td> Driven by data</td>
-        </tr>
-        <tr>
-          <td> requires more bandwidth </td>
-          <td> requires minimal bandwidth</td>
-        </tr>
-        <tr>
-          <td>
-          default Stateless but can be made stateful.
-          sends messages using other protocols such as <b>HTTP</b> , <b>SMTP</b>(Simple Mail Transfer Protocol) <b>TCP</b>, or <b>UDP</b></td>
-          <td> Stateless existence and use of <b>HTTP</b> status codes</td>
-        </tr>
-
 ## URLSession Template
 
 ```Swift 
@@ -367,3 +316,53 @@ class <# Name #>: NSObject {
     }
 }
 ```
+## Comparison Summary
+
+<table>
+        <tr>
+            <th>SOAP</th>
+            <th>REST</th>
+        </tr>
+        <tr>
+          <td> Strict set of rules and advanced security to follow </td>
+          <td> Loose guidelines to follow and allow developers to make recommendations easily.</td>
+        </tr>
+        <tr>
+          <td> Sends messages in <b>XML</b> format.
+          </td>
+          <td>  Can send plain text, <b>HTML</b>, <b>XML</b>, <b>YAML</b>, and <b>JSON</b>. </td>
+        </tr>
+        <tr>
+          <td> Requires an Envelope and Body. Headers and Faults are optional
+          </td>
+          <td> Client-Server separation - each act independently and interact only thru requests and responses</td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <td>  Uniform interface- requests from different clients should look the same. Same resources shouldn't have more than on URI </td>
+        </tr>
+        <tr>
+          <td> API calls cannot be cached
+          </td>
+          <td>  Cacheable Resources </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <td>  Layered System </td>
+        </tr>
+        <tr>
+          <td> Driven by function  </td>
+          <td> Driven by data</td>
+        </tr>
+        <tr>
+          <td> requires more bandwidth </td>
+          <td> requires minimal bandwidth</td>
+        </tr>
+        <tr>
+          <td>
+          default Stateless but can be made stateful.
+          sends messages using other protocols such as <b>HTTP</b> , <b>SMTP</b>(Simple Mail Transfer Protocol) <b>TCP</b>, or <b>UDP</b></td>
+          <td> Stateless existence and use of <b>HTTP</b> status codes</td>
+        </tr>
